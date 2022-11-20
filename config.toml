@@ -1,0 +1,73 @@
+baseurl = "https://example.com"
+languageCode = "en-us"
+paginate = 6
+theme = "hugo-tania"
+title = "ZHANG Tai"
+
+# disqusShortname = "https-hugo-tania-netlify-app"
+
+[params]
+# Emoji will show before the blog title on site navbar.
+# titleEmoji = "🦭"
+
+# Logo will show before the blog title on site navbar.
+titleLogo = "favicon.png"
+
+# Enable float footnotes.
+# Default to true
+enableFootnotes = true
+
+author = "ZHANG Tai"
+siteDesc = "Hugo is Absurdly Fast!"
+siteName = "Hugo Tania is Amazing"
+
+[params.colorScheme]
+# Enable toggle colorScheme
+# Default to true
+toggle = true
+# Default colorScheme
+# Default to auto
+default = "auto"
+
+# Limit how many categories filter show above search input.
+# Default to 5
+maxCategoryToShow = 10
+
+# Show your social information with icon on index bio with `_index.md` content.
+[params.socialOptions]
+dev-to = ""
+email = ""
+facebook = ""
+github = "https://github.com/zhangtai"
+instagram = ""
+linkedin = ""
+medium = ""
+stack-overflow = ""
+steam = ""
+telegram = ""
+twitch = ""
+twitter = "https://twitter.com/zhangt_ai"
+whatsapp = ""
+
+# Comments settigns
+[params.comments]
+enabled = true
+provider = "disqus"
+
+[menu]
+[[menu.header]]
+name = "Blog"
+url = "/blog/"
+# [[menu.footer]]
+# name = "RSS"
+# url = "/index.xml"
+
+[markup]
+[markup.highlight]
+lineNos = true
+noClasses = false
+[markup.goldmark.renderer]
+unsafe = true
+
+[outputs]
+home = ["HTML", "RSS", "JSON"]
