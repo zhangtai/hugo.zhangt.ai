@@ -16,6 +16,12 @@ Hi, this is ZHANG Tai. A full time DevOps engineer living in Guangzhou, China.
     color: red;
     transition: 0.2s;
   }
+  @media only screen and (max-width: 640px) {
+    div.profile {
+      display: inline-block;
+      position: relative;
+    }
+  }
 </style>
 
 <div class="profile">
