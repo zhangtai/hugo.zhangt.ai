@@ -96,8 +96,7 @@ In `Additional Settings`, choose `curl` as Download Utility, input Parameter as 
 1. Run on client:
 
 ```console
-ubuntu in 🌐 ubuntu-1 in ~ 
-⬢ [Systemd] ❯ iperf3 -t 60 -c 192.168.2.1 -i 10
+$ iperf3 -t 60 -c 192.168.2.1 -i 10
 Connecting to host 192.168.2.1, port 5201
 [  4] local 192.168.2.21 port 44904 connected to 192.168.2.1 port 5201
 [ ID] Interval           Transfer     Bandwidth       Retr  Cwnd
