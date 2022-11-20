@@ -16,13 +16,13 @@ As all major target of this blog should have visiting with the browser supports 
 
 The ratio of convert, 10 to 20 times small in size!
 
-```bash
-(P)☁  images [main] ls -l *png
+```console
+$ ls -l *png
 -rw-r--r--@ 1 taizhang  staff  455183 Mar 26 15:15 casual-life-3d-green-book-with-orange-ribbon.png
 -rw-r--r--@ 1 taizhang  staff  414112 Mar 26 15:14 casual-life-3d-lab.png
 -rw-r--r--@ 1 taizhang  staff  444124 Mar 26 15:13 casual-life-3d-young-man-and-woman-standing-together.png
 
-(P)☁  images [main] ls -l *webp
+$ ls -l *webp
 -rw-r--r--  1 taizhang  staff  21920 Apr 24 09:36 casual-life-3d-green-book-with-orange-ribbon.webp
 -rw-r--r--  1 taizhang  staff  42284 Apr 24 09:36 casual-life-3d-lab.webp
 -rw-r--r--  1 taizhang  staff  46594 Apr 24 09:36 casual-life-3d-young-man-and-woman-standing-together.webp
@@ -40,8 +40,8 @@ I need to delete the images already in the repo, which is useless and adding ext
 
 Result: From `3.7MB` to `356KB`, another 10 times shrink.
 
-```bash session
-(P)nodejs/zhangt.ai [ bfg -D casual-life-3d-lab.png                                                                                main ] 9:26 AM
+```console
+$ bfg -D casual-life-3d-lab.png
 
 Using repo : /Users/taizhang/workspace/nodejs/zhangt.ai/.git
 
@@ -102,18 +102,17 @@ In total, 11 object ids were changed. Full details are logged here:
         /Users/taizhang/workspace/nodejs/zhangt.ai.bfg-report/2022-04-24/09-26-33
 
 BFG run is complete! When ready, run: git reflog expire --expire=now --all && git gc --prune=now --aggressive
-(P)nodejs/zhangt.ai [ du -hs .git                                                                                                  main ] 9:26 AM
+$ du -hs .git
 3.7M    .git
-(P)nodejs/zhangt.ai [ git reflog expire --expire=now --all && git gc --prune=now --aggressive                                      main ] 9:26 AM
+$ git reflog expire --expire=now --all && git gc --prune=now --aggressive 
 Enumerating objects: 408, done.
 Counting objects: 100% (408/408), done.
 Delta compression using up to 8 threads
 Compressing objects: 100% (397/397), done.
 Writing objects: 100% (408/408), done.
 Total 408 (delta 247), reused 0 (delta 0), pack-reused 0
-(P)nodejs/zhangt.ai [ du -hs .git                                                                                                  main ] 9:26 AM
+$ du -hs .git
 356K    .git
-(P)nodejs/zhangt.ai [                                                                                                              main ] 9:26 AM
 ```
 
 [Wand]: https://docs.wand-py.org/
