@@ -42,11 +42,12 @@ github = "https://github.com/zhangtai"
 instagram = ""
 linkedin = ""
 medium = ""
+mastodon = "https://fosstodon.org/@zhangtai"
 stack-overflow = ""
 steam = ""
 telegram = ""
 twitch = ""
-twitter = "https://twitter.com/zhangt_ai"
+# twitter = "https://twitter.com/zhangt_ai"
 whatsapp = ""
 
 # Comments settigns
