@@ -5,10 +5,6 @@ updated: '2022-02-13'
 tags: 
 - homelab
 - network
-authors:
-  name: Tai Zhang
-  url: https://github.com/zhangtai
-  image_url: https://github.com/zhangtai.png
 ---
 
 In China, the control is very strict for whom and what you can share on the internet, everything on internet must can be associated with a real national ID and been censored. Which is very annoying to whom have no interest about politics and only want to learn new things on the internet, because it's very slow for accessing services outside of China and vice versa, if you are lucky enough that the service has not been blocked totally 🤫.
