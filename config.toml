@@ -18,8 +18,8 @@ titleLogo = "favicon.png"
 enableFootnotes = true
 
 author = "ZHANG Tai"
-siteDesc = "Hugo is Absurdly Fast!"
-siteName = "Hugo Tania is Amazing"
+siteDesc = "This is personal website of ZHANG Tai, a DevOps engineer living in Guangzhou, China."
+siteName = "ZHANGT.AI"
 
 [params.colorScheme]
 # Enable toggle colorScheme
