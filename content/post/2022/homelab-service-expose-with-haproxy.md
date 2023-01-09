@@ -7,8 +7,9 @@ tags:
 - network
 ---
 
+> UPDATE(2023-01-09): I no longer use OpnSense anymore, instead I am using OpenWrt now.
 
-In this post I will show you how to expose the homelab services through HAPROXY as a reversed proxy, but keep in mind this is dangerous because anyone knows the domains you setup will be able to connect your homelab directly, and if you not securely setup your firewall they can be possibly hack you and your families devices.
+In this post I will show you how to expose the homelab services through HAPROXY as a reversed proxy, but keep in mind this is dangerous because anyone knows the domains you set up will be able to connect your homelab directly, and if you not securely setup your firewall they can hack you and your families devices.
 
 <!--truncate-->
 
@@ -25,7 +26,7 @@ In this post I will show you how to expose the homelab services through HAPROXY 
 
 As a home internet service, ISP will only provide dynamic IP(At least in China), so you need to setup ddns service to update the IP address when changing.
 
-Go to `Services / Dynamic DNS / Settings` create one with inputs:
+Go to `Services / Dynamic DNS / Settings` and create one with the inputs:
 
 - Service: `Cloudflare`
 - Username: `<email>`
@@ -38,13 +39,13 @@ Go to `Services / Dynamic DNS / Settings` create one with inputs:
 
 ### Wildcard TLS certificate and Private key
 
-I use certbot to create an rotate my certs, after the certs created upload to the OpnSense system in: `System / Trust / Certificates`
+I use ~~certbot~~ **acme.sh** to create and rotate my certs, ~~after the certs created and upload~~ save to the OpnSense system in `System / Trust / Certificates`
 
 ### Port Forward
 
-You will need to select a primary port for all the services(e.g. 1234), this will be listen by a frontend service. For a simple homelab with not to much and complex services one public service is able to serve all the services. In this post I will create only one.
+You will need to select a primary port for all the services(e.g. 1234), this will be listened to by a frontend service. For a simple homelab with not too much and complex services, one public service can serve all the services. In this post, I will create only one.
 
-You may need to create an alias of the custom port in `Firewall / Aliases`, if you are not using standard HTTPS port for exposing, because some ISP not allowing opening 80 or 443 port.
+You may need to create an alias of the custom port in `Firewall / Aliases`, if you are not using a standard HTTPS port for exposing because some ISP not allowing the opening 80 or 443 ports.
 
 Go to `Firewall / NAT / Port Forward` and create a new rule as:
 
@@ -56,16 +57,29 @@ Go to `Firewall / NAT / Port Forward` and create a new rule as:
 - Redirect target port: `<Port_Alias>`
 - NAT reflection: `Enable`
 
-You will also need to set `Firewall / Settings / Advanced` on below field to enable NAT reflection:
+You will also need to set `Firewall / Settings / `Advanced` on the below field to enable NAT reflection:
 
 - Reflection for port forwards: `true`
 - Automatic outbound NAT for Reflection: `true`
 
 ### HAProxy
 
-The sequence for setup each service in HAProxy is this chart, each service has very detailed explanation in the configuration page.
+The sequence for setup each service in HAProxy is this chart, each service has a detailed explanation on the configuration page.
 
 ```mermaid
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#ffd479',
+      'primaryTextColor': '#277BC0',
+      'primaryBorderColor': '#277BC0',
+      'lineColor': '#3B9AE1',
+      'secondaryColor': '#006100',
+      'tertiaryColor': '#fff'
+    }
+  }
+}%%
 graph LR
     rs1[Real Server 1] --> bp1[Backend Pools 1]
     bp1 --> con1[Conditions 1]
@@ -88,7 +102,7 @@ I will show an example to expose code-server service with port `8080` on a local
 - Name or Prefix: `CODE-SERVER`
 - FQDN or IP: `192.168.1.2`
 - Port: `8080`
-- SSL: According to your servcie
+- SSL: According to your service
 
 #### Backend Pool
 
