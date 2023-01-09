@@ -8,7 +8,7 @@ tags:
 
 I have been using OpnSense for the last 4(?) years, mostly satisfied with it.
 
-Inspired by [HN article](https://kohlschuetter.github.io/blog/posts/2022/10/28/linux-nanopi-r4s/) for fixing the NanoPi R4S issue and upgrade the kernel, I search this device on Taobao, found R5S is available. But wait, there is R6S!? Just 2 days after release, even lucky that find the company FriendlyELEC in my city(Guangzhou), ordered and received it. Let's power on.
+Inspired by [HN article](https://kohlschuetter.github.io/blog/posts/2022/10/28/linux-nanopi-r4s/) for fixing the NanoPi R4S issue and upgrading the kernel, I search for this device on Taobao, and found R5S is available. But wait, there is R6S!? Just 2 days after release, even lucky that find the company FriendlyELEC in my city(Guangzhou), ordered and received it. Let's power on.
 
 It installed OpenWrt by default, not the official one but a fork named FriendlyWrt, I can start it and connect it to monitoring and login to it, but all the network ports not working, as advised by the seller, I need to re-install the system. Installed the latest version with docker, powered it on again, networks working fine.
 
@@ -23,7 +23,7 @@ Here are some notes during I setup and learning in the first 3 days.
 - Username: `Bearer`
 - Password: `seCreTtok3n`
 
-Since I am using wildcard domain names, the [script](https://github.com/openwrt/packages/blob/master/net/ddns-scripts/files/usr/lib/ddns/update_cloudflare_com_v4.sh) can't handle it and caused can't find zone issue, the simple solution is hard code you zone_id in the file(`/usr/lib/ddns/update_cloudflare_com_v4.sh`)
+Since I am using wildcard domain names, the [script](https://github.com/openwrt/packages/blob/master/net/ddns-scripts/files/usr/lib/ddns/update_cloudflare_com_v4.sh) can't handle it and caused can't find zone issue, the simple solution is hard-code your `zone_id`` in the file(`/usr/lib/ddns/update_cloudflare_com_v4.sh`)
 
 ```shell
 # ...
@@ -37,7 +37,7 @@ When using OpnSense I was using haproxy, and the setup of service is very cumber
 
 When researching reverse proxy on OpenWrt, I see people recommended nginx and finally figured out how to set up with config files, the easy to understand, and backup config files. 
 
-1. Install `luci-ssl-nginx`
+1. Install `luci-ssl-nginx`, and **important** `nginx-all-module` otherwise some feature missing will cause you a headache, for me it was realip module which caused the `wss` proxy fails.
 1. Create TLS cert and key for your public service and save to e.g. `/etc/certs/myhome.example.tld`, I am using cerbot.
 1. We will listen our services at port `10443` since most ISPs blocked port `443`. Create a port forwarding for the port `10443` in `Network -> Firewall -> Port Forwards` for the OpenWrt instance.
 1. Add services in `/etc/config/nginx`:
@@ -72,8 +72,7 @@ server_names_hash_bucket_size  64;
 ```
 
 ## Proxy on OpenWrt
-
-There are a lot of enthusiasms in China for using OpenWrt/LEDE, especially the VPN/Proxy features, but I failed to manage to set up passwall on my device, and seems it's not possible to setup a transparent proxy for HTTPS traffic, so I just need to run a hysteria proxy client on the router and open port `3128` so any device can use it by explicitly set the `https_proxy` environment variable.
+There is a lot of enthusiasm in China for using OpenWrt/LEDE, especially the VPN/Proxy features, but I failed to manage to set up passwall on my device, and seems it's not possible to set up a transparent proxy for HTTPS traffic, so I just need to run a hysteria proxy client on the router and open port `3128` so any device can use it by explicitly set the `https_proxy` environment variable.
 
 But setup a service with init.d on OpenWrt is not straight(to me?), so I am going to use the docker service:
 
@@ -91,9 +90,9 @@ In `Additional Settings`, choose `curl` as Download Utility, input Parameter as 
 
 ## iperf3 benchmark
 
-1. [Download](https://iperf.fr/iperf-download.php) to client, ((my) server(OpenWrt) already has it).
+1. [Download](https://iperf.fr/iperf-download.php) to the client, ((my) server(OpenWrt) already has it).
 1. Start it on server: `iperf3 -s`
-1. Run on client:
+1. Run on the client:
 
 ```console
 $ iperf3 -t 60 -c 192.168.2.1 -i 10
