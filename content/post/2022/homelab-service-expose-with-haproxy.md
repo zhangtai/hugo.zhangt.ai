@@ -7,7 +7,6 @@ tags:
 - network
 ---
 
-import Mermaid from '@theme/Mermaid';
 
 In this post I will show you how to expose the homelab services through HAPROXY as a reversed proxy, but keep in mind this is dangerous because anyone knows the domains you setup will be able to connect your homelab directly, and if you not securely setup your firewall they can be possibly hack you and your families devices.
 
@@ -66,9 +65,8 @@ You will also need to set `Firewall / Settings / Advanced` on below field to ena
 
 The sequence for setup each service in HAProxy is this chart, each service has very detailed explanation in the configuration page.
 
-<Mermaid
-  chart={`
-    graph LR
+```mermaid
+graph LR
     rs1[Real Server 1] --> bp1[Backend Pools 1]
     bp1 --> con1[Conditions 1]
     con1 --> ru1[Rules 1]
@@ -81,8 +79,7 @@ The sequence for setup each service in HAProxy is this chart, each service has v
     ru1 --> ps[Public Services]
     ru2 --> ps
     run --> ps
-    `}
-/>
+```
 
 I will show an example to expose code-server service with port `8080` on a local machine with ip `192.168.1.2`
 
