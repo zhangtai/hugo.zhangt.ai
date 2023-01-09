@@ -1,4 +1,4 @@
-baseurl = "https://example.com"
+baseurl = "https://zhangt.ai"
 languageCode = "en-us"
 paginate = 6
 theme = "hugo-tania"

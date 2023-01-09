@@ -1,5 +1,5 @@
 ---
 title: Blog
-subtitle: Notes and sharings.
+subtitle: Notes and sharing.
 layout: "archives"
 ---
